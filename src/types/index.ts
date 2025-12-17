@@ -96,6 +96,26 @@ export type SettlementVersion = {
 
 export type SettlementAction = "accept" | "reject" | "amend";
 
+export type UploadedFile = {
+  id: string;
+  name: string;
+  size: number;
+  mimeType: string;
+  kind: "contract" | "evidence";
+  status: "uploading" | "uploaded" | "error";
+};
+
+export type DraftCase = {
+  id: string;
+  role: CaseRole | null;
+  narrative: string;
+  narrativeHtml?: string;
+  contracts: UploadedFile[];
+  evidence: UploadedFile[];
+  accepted: boolean;
+  updatedAt: string;
+};
+
 // API Response types
 export type APIResponse<T> = {
   data: T;

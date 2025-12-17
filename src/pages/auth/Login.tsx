@@ -37,8 +37,7 @@ export default function Login() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-solvilo-navy/95" />
         <div className="relative z-10 flex flex-col justify-center px-12 xl:px-20">
           <div className="flex items-center gap-3 mb-8">
-            <Scale className="h-12 w-12 text-primary-foreground" />
-            <span className="text-3xl font-bold text-primary-foreground">SOLVILO</span>
+            <img src="/solvilo-removebg.png" alt="SOLVILO" className="h-16 w-auto" />
           </div>
           <h1 className="text-4xl xl:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
             Résolution amiable de vos litiges contractuels
@@ -68,9 +67,8 @@ export default function Login() {
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           {/* Mobile logo */}
-          <div className="flex items-center justify-center gap-2 mb-8 lg:hidden">
-            <Scale className="h-10 w-10 text-primary" />
-            <span className="text-2xl font-bold text-foreground">SOLVILO</span>
+          <div className="flex items-center justify-center mb-8 lg:hidden">
+            <img src="/solvilo-removebg.png" alt="SOLVILO" className="h-12 w-auto" />
           </div>
 
           <Card className="border-0 shadow-lg">

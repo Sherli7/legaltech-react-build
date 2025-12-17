@@ -34,7 +34,7 @@ export default function Index() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <nav className="container mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-2">
-            <Scale className="h-8 w-8 text-primary" />
+            <img src="/solvilo-removebg.png" alt="SOLVILO" className="h-10 w-auto" />
             <span className="text-xl font-bold text-foreground">SOLVILO</span>
           </Link>
           <div className="flex items-center gap-4">
@@ -180,13 +180,50 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-border">
+      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-border bg-muted/30">
         <div className="container mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Scale className="h-6 w-6 text-primary" />
-              <span className="font-bold text-foreground">SOLVILO</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* Logo et description */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <img src="/solvilo-removebg.png" alt="SOLVILO" className="h-8 w-auto" />
+                <span className="font-bold text-foreground">SOLVILO</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Plateforme de résolution amiable de litiges contractuels propulsée par l'IA.
+              </p>
             </div>
+
+            {/* Coordonnées */}
+            <div>
+              <h3 className="font-semibold text-foreground mb-4">Contactez-nous</h3>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>Email: contact@solvilo.com</p>
+                <p>Tél: +33 1 23 45 67 89</p>
+                <p>Adresse: 123 Avenue des Champs-Élysées</p>
+                <p>75008 Paris, France</p>
+              </div>
+            </div>
+
+            {/* Liens rapides */}
+            <div>
+              <h3 className="font-semibold text-foreground mb-4">Liens rapides</h3>
+              <div className="space-y-2 text-sm">
+                <Link to="/auth/register" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Créer un compte
+                </Link>
+                <Link to="/auth/login" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Se connecter
+                </Link>
+                <a href="mailto:support@solvilo.com" className="block text-muted-foreground hover:text-primary transition-colors">
+                  Support
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="pt-8 border-t border-border text-center">
             <p className="text-sm text-muted-foreground">
               © 2025 SOLVILO. Tous droits réservés.
             </p>

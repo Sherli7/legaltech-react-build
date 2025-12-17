@@ -61,8 +61,7 @@ export function DashboardLayout() {
           {/* Logo */}
           <div className="flex items-center justify-between h-16 px-6 border-b border-sidebar-border">
             <Link to="/dashboard" className="flex items-center gap-2">
-              <Scale className="h-8 w-8 text-sidebar-primary" />
-              <span className="text-xl font-bold text-sidebar-foreground">SOLVILO</span>
+              <img src="/solvilo-removebg.png" alt="SOLVILO" className="h-10 w-auto" />
             </Link>
             <Button 
               variant="ghost" 
