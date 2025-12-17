@@ -53,6 +53,7 @@ export type CaseFile = {
 };
 
 export type DocumentType = "CONTRACT" | "EVIDENCE" | "AFFIDAVIT";
+export type DocumentVisibility = "private" | "shared";
 
 export type Document = {
   id: string;
@@ -60,6 +61,8 @@ export type Document = {
   name: string;
   url: string;
   uploadedAt: string;
+  visibility?: DocumentVisibility; // private: visible uniquement à la partie courante
+  sharedWith?: string[]; // ids des parties autorisées
 };
 
 export type IAQuestion = {

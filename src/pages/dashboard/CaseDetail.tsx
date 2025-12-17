@@ -10,11 +10,16 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { mockCases, mockAnalysis, mockIAQuestions, mockSettlementVersions } from "@/lib/mock-data";
 import { useState } from "react";
+import { useMessages } from "@/hooks/use-messages";
+import { Textarea } from "@/components/ui/textarea";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function CaseDetail() {
   const { id } = useParams();
   const caseFile = mockCases.find(c => c.id === id);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [newMessage, setNewMessage] = useState("");
+  const { items: messages, isLoading: messagesLoading, isSending, sendMessage } = useMessages(id || "");
 
   if (!caseFile) {
     return (
@@ -215,6 +220,59 @@ export default function CaseDetail() {
           </CardContent>
         </Card>
       )}
+
+      {/* Messaging */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Messagerie du dossier</CardTitle>
+          <CardDescription>
+            Échanges sécurisés avec les parties autorisées
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <ScrollArea className="h-64 border rounded-md p-3 bg-muted/40">
+            {messagesLoading ? (
+              <p className="text-sm text-muted-foreground">Chargement des messages...</p>
+            ) : messages.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Aucun message pour le moment.</p>
+            ) : (
+              <div className="space-y-3">
+                {messages.map((msg) => (
+                  <div key={msg.id} className="p-3 rounded-lg bg-background border">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-sm font-medium">{msg.author.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(msg.createdAt).toLocaleString("fr-FR")}
+                      </p>
+                    </div>
+                    <p className="text-sm mt-1">{msg.content}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ScrollArea>
+
+          <div className="space-y-2">
+            <Textarea
+              placeholder="Écrire un message..."
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              rows={3}
+            />
+            <div className="flex justify-end">
+              <Button
+                onClick={() => {
+                  if (!newMessage.trim()) return;
+                  sendMessage(newMessage.trim()).then(() => setNewMessage(""));
+                }}
+                disabled={isSending || !newMessage.trim()}
+              >
+                {isSending ? "Envoi..." : "Envoyer"}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

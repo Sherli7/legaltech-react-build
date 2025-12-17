@@ -14,6 +14,7 @@
 - Persister brouillon côté API (`PATCH/PUT /cases/draft/:id`) incluant `narrativeHtml`, resync à l’ouverture.
 - Bloquer navigation/fermeture si upload ou soumission en cours (beforeunload/confirm).
 - Gérer erreurs serveur (upload/save/submit) avec toasts + retry.
+- AJOUT partage/adverse : workflow de publication (brouillon → partage) et choix des pièces/exposé à partager (private/shared) ; traçabilité d’accès.
 
 ## 3. Dossiers & détail
 - CaseDetail : téléchargement PDF (handler réel), réponses IA (POST), workflow entente (accepter/proposer/refuser) + historique des versions.
@@ -30,9 +31,19 @@
 - Définir périmètre avocat (routes/features) et ACL front/back associées.***
 
 ## 7. Fonctionnalités complémentaires (à cadrer/prioriser)
-- Notifications & centre d’alertes : push/email pour nouvelles questions IA, propositions d’entente, échéances, uploads adverses.
-- Signature électronique & horodatage : intégration eIDAS, scellement des documents et journal d’audit (qui a vu/fait quoi, quand).
-- Messagerie sécurisée : fil de messages/annotations par dossier, partage de pièces avec contrôle d’accès fin.
+- Notifications & centre d’alertes :
+  - UI centre de notifications (liste, filtrage, marquer comme lu, “tout lire”).
+  - Hooks/services `notifications` (polling ou WebSocket) avec mock + support backend. ✅ base service mock ajoutée.
+  - Push/email : abonnement web push (si infra), templates email; déclencheurs (questions IA, entente, échéances, uploads).
+  - Backlog : états (unread/read), types (info/warning/action), pagination/infinite scroll.
+- Messagerie sécurisée :
+  - UI fil de messages par dossier (threads, pièces attachées), indicateur de nouveau message.
+  - ACL : qui peut poster/lire (partie, avocat, interne), statut confidentialité/partage à la partie adverse.
+  - Hooks/services `messages` (mock + prêt backend), support pagination, envoi, marquer comme lu. ✅ base service mock ajoutée.
+  - Notifications intégrées au centre (nouveau message).
+- Partage/adverse & audit :
+  - Service de partage (mock prêt backend) pour publier un dossier et régler la visibilité des pièces/exposé. ✅ sharingService ajouté.
+  - Journal d’audit des accès/actions adverses (lecture, dépôt pièces, propositions), UI à créer.
 - Templates & génération : modèles d’accord transactionnel, mises en demeure, PV, variables auto-remplies.
 - OCR/indexation : recherche plein texte, extraction de métadonnées (dates, montants, clauses clés) sur pièces uploadées.
 - Calendrier/échéances : gestion des délais légaux, relances automatiques, export ICS.

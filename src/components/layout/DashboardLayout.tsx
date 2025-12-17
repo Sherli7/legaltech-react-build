@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { mockUser } from "@/lib/mock-data";
+import { NotificationBell } from "@/components/NotificationBell";
 
 const navigation = [
   { name: "Tableau de bord", href: "/dashboard", icon: LayoutDashboard },
@@ -133,7 +134,9 @@ export function DashboardLayout() {
 
             <div className="flex-1 lg:flex-none" />
 
-            <DropdownMenu>
+            <div className="flex items-center gap-2">
+              <NotificationBell />
+              <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2">
                   <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
@@ -169,6 +172,7 @@ export function DashboardLayout() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            </div>
           </div>
         </header>
 
