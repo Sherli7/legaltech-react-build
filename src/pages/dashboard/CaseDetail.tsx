@@ -11,7 +11,6 @@ import { StatusBadge } from "@/components/ui/status-badge";
 import { mockCases, mockAnalysis, mockIAQuestions, mockSettlementVersions } from "@/lib/mock-data";
 import { useState } from "react";
 import { useMessages } from "@/hooks/use-messages";
-import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function CaseDetail() {
